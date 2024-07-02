@@ -1,0 +1,17 @@
+{
+  "name": "shared-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "build": "tsc"
+  },
+  "author": "Samadhi Laksahan",
+  "license": "MIT",
+  "dependencies": {
+    "typeorm": "^0.3.20"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.2"
+  }
+}

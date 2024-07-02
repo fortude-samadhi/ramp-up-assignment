@@ -1,6 +1,10 @@
-<p>import works!</p>
-<div class="file-drop-container">
-    <ngx-file-drop dropZoneLabel="Drag and drop your files here" 
-                   (onFileDrop)="dropped($event)">
-    </ngx-file-drop>
-  </div>
+<p-fileUpload name="file" [url]="url" 
+              accept=".csv,.xlsx,.xls" 
+              [maxFileSize]="maxFileSize" 
+              (onUpload)="onUpload($event)" 
+              (onError)="onError($event)"
+              mode="advanced" 
+              chooseLabel="Choose Files" 
+              uploadLabel="Upload" 
+              cancelLabel="Cancel">
+</p-fileUpload>

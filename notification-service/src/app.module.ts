@@ -1,12 +1,10 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { NotificationGateway } from './notification.gateway';
-
-
+import { SocketioModule } from './socketio/socketio.module';
 @Module({
-  imports: [],
+  imports: [SocketioModule],
   controllers: [AppController],
-  providers: [AppService, NotificationGateway],
+  providers: [AppService],
 })
 export class AppModule {}

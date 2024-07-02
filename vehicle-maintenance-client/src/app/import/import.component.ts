@@ -1,37 +1,26 @@
-// src/app/import/import.component.ts
 import { Component } from '@angular/core';
-import { NgxFileDropEntry, FileSystemFileEntry } from 'ngx-file-drop';
-import { ImportService } from './import.service';
+// import { ImportService } from './import.service';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-import',
   templateUrl: './import.component.html',
-  styleUrls: ['./import.component.css']
+  styleUrls: ['./import.component.scss']
 })
 export class ImportComponent {
-  public files: NgxFileDropEntry[] = [];
+   
+  constructor(private messageService: MessageService) {}
+  maxFileSize:number = 100000;
 
-  constructor(private importService: ImportService) {}
+  url = 'http://localhost:3001/vehicles/upload';
 
-  public dropped(files: NgxFileDropEntry[]) {
-    this.files = files;
-    for (const droppedFile of files) {
-      if (droppedFile.fileEntry.isFile) {
-        const fileEntry = droppedFile.fileEntry as FileSystemFileEntry;
-        fileEntry.file((file: File) => {
-          const formData = new FormData();
-          formData.append('file', file, droppedFile.relativePath);
-
-          this.importService.uploadFile(formData).subscribe(
-            (response:any) => {
-              console.log(response);
-            },
-            (error:any) => {
-              console.error(error);
-            }
-          );
-        });
-      }
+  onUpload(event: any) {
+    for (const file of event.files) {
+      console.log('File uploaded: ', file);
     }
+  }
+
+  onError(event: any) {
+    console.log('File upload error: ', event);
   }
 }
